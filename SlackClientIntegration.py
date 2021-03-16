@@ -1,4 +1,4 @@
-from slackclient import SlackClient
+from slack_sdk import WebClient
 import threading, time
 
 ### EXAMPLE ###
@@ -22,7 +22,7 @@ class Slack:
     def sendMessageFromQueue(self):
         try:
             ### PREPARE CLIENT ###
-            client = SlackClient(self.slackToken)
+            client = WebClient(self.slackToken)
 
             ### RETRIEVE CHANNEL ID ###
             channels = client.api_call('conversations.list')['channels']
@@ -37,7 +37,7 @@ class Slack:
                     queueMessage = self.messageQueue.pop(0)
 
                     ### SEND MESSAGE ###
-                    client.api_call('chat.postMessage',channel=channelID,text=queueMessage)
+                    client.chat_postMessage(channel=channelID, text=queueMessage)
                     time.sleep(1)
                     self.count += 1
 
