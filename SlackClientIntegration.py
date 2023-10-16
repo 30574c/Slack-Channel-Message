@@ -1,13 +1,6 @@
 from slack_sdk import WebClient
 import threading, time
 
-### EXAMPLE ###
-# from SlackClientIntegration import Slack
-# from config import *
-# tradingUpdates = Slack('bot_testing',TRADINGUPDATEBOT_SLACK_TOKEN) # Token in config
-# tradingUpdates.sendMessage('MESSAGE')
-# tradingUpdates.close()
-
 class Slack:
 
     def __init__(self, channelName, token):
